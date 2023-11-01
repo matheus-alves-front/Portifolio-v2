@@ -1,0 +1,135 @@
+@import '/app/styles/theme.scss';
+
+.Container {
+  height: 90vh;
+  width: 100%;
+  padding: 2rem;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: flex-end;
+  @include font-family-archivo();
+
+
+  color: $neutral-color-high-pure;
+
+  .content {
+    h1 {
+      @include font-family-archivo-black();
+      font-size: 10rem;
+      line-height: .9;
+      text-transform: uppercase;
+    }
+
+    nav {
+      @include flex-row();
+      justify-content: space-between;
+      position: relative;
+      z-index: 1;
+
+      .writingLabel {
+        font-size: 2rem;
+        font-weight: bold;
+      }
+
+      .skillSet {
+        @include flex-row();
+        gap: 1rem;
+
+        .skill {
+          padding: .5rem;
+          border: 1px solid $neutral-color-high-pure;
+          cursor: help;
+          @include transition-slow();
+
+          &:hover {
+            background-color: $neutral-color-high-pure;
+            color: $neutral-color-low-pure;
+          }
+
+          &.last {
+            transform: rotateZ(0deg);
+            cursor: pointer;
+
+            &:hover {
+              transform: rotateY(360deg);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: $mobile) {
+  .Container {
+    grid-template-columns: 1fr;
+
+
+    .content {
+      h1 {
+        font-size: 8rem;
+      }
+      nav {
+        flex-direction: column;
+
+        .writingLabel {
+          margin-bottom: 1rem;
+        }
+
+        .skillSet {
+          gap: .5rem;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: $mobile-small) {
+  .Container {
+    .content {
+      h1 {
+        font-size: 6rem;
+      }
+    }
+  }
+}
+
+@media (max-width: $mobile-super-small) {
+  .Container {
+    padding: .5rem;
+
+    .content {
+      h1 {
+        font-size: 4.5rem;
+      }
+
+      nav {
+        margin-bottom: .5rem;
+
+        .skillSet {
+          flex-wrap: wrap;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: $mobile-ultra-small) {
+  .Container {
+    .content {
+      h1 {
+        font-size: 3.5rem;
+      }
+
+      nav {
+        .skillSet {
+          .skill {
+            padding: .3rem;
+            font-size: .9rem;
+          }
+        }
+      }
+    }
+  }
+}

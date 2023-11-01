@@ -1,0 +1,40 @@
+/* ===== Scrollbar CSS ===== */
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 0px;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  scrollbar-width: 0px;
+}
+
+html,
+body {
+  min-height: 100vh;
+  max-width: 100vw;
+  font-size: 16px;
+  overflow-x: hidden;
+  background-color: white !important;
+  background-image: url('/backgrounds/bg-1.png');
+  background-size: cover;
+  background-position: 70% 10%;
+  background-repeat: no-repeat;
+}
+
+main {
+  position: relative;
+  z-index: 1;
+
+  /* responsive */
+  max-width: 1440px;
+  margin: auto;
+}
+
+a, button {
+  cursor: pointer;
+  text-decoration: none;
+}
+

@@ -1,13 +1,25 @@
 "use client"
 import Typical from 'react-typical'
 import styles from './Apresentation.module.scss'
+import { motion, useMotionValueEvent, useScroll, useTransform } from "framer-motion"
 
 export function ApresentationSection() {
+  const { scrollY } = useScroll()
+
+  let scrollYReverse = useTransform(() => scrollY.get() - (scrollY.get() * 2))
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    console.log("Page scroll: ", latest)
+    scrollYReverse
+  })
+
   return (
-    <section className={styles.Container} id="#apresentation">
+    <section className={styles.Container} id="apresentation">
       <div className='column'></div>
       <div className={styles.content}>
-        <nav>
+        <motion.nav
+          style={{x: scrollY}}
+        >
           <span
             className={styles.writingLabel}
           >
@@ -37,10 +49,10 @@ export function ApresentationSection() {
             <span className={styles.skill}>Next.js</span>
             <span className={styles.skill}>Prisma.io</span>
             <span className={styles.skill}>Three.js</span>
-            <span className={`${styles.skill} ${styles.last}`}>6 More +</span>
+            <span className={`${styles.skill} ${styles.last}`}>More +</span>
           </div>
-        </nav>
-        <h1>Matheus Alves</h1>
+        </motion.nav>
+        <motion.h1 style={{x: scrollYReverse}}>Matheus Alves</motion.h1>
       </div>
     </section>
   )

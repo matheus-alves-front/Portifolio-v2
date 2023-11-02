@@ -1,9 +1,3 @@
-import { 
-  useFrame,
-  useThree,
-  extend,
-  userFrame
-} from '@react-three/fiber'
 import { useRef } from 'react'
 
 import { 

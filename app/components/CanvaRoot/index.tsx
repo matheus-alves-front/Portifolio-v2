@@ -1,10 +1,5 @@
 "use client"
 import { Canvas } from '@react-three/fiber'
-
-import { 
-  CineonToneMapping,
-  ACESFilmicToneMapping,
-} from 'three'
 import { LoadModels } from '../LoadModels'
 import { StrictMode } from 'react'
 import styles from './CanvaRoot.module.scss'

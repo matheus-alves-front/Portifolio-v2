@@ -1,9 +1,9 @@
-import { useEffect, useRef, useState } from 'react'
-import { OrbitControls, OrthographicCamera, PerspectiveCamera, Plane } from '@react-three/drei'
+"use client"
+import { useEffect, useRef } from 'react'
+import { OrbitControls, PerspectiveCamera } from '@react-three/drei'
 import { 
   useFrame,
   useThree,
-  extend,
   GroupProps,
 } from '@react-three/fiber'
 
@@ -11,7 +11,6 @@ import { motion } from 'framer-motion-3d'
 
 import { Matheus } from './Models/Matheus'
 import { useControls } from 'leva'
-import { Group, Mesh } from 'three'
 
 const cameraSettings = {
   fov: 90,

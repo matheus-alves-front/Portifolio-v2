@@ -93,7 +93,7 @@ export function LoadModels() {
     const windowWidth = window.innerWidth;
     const windowHeight = window.innerHeight;
 
-    if (windowWidth < 800) {
+    if (windowWidth < 1024) {
       setIsMobileView(true)
     } else {
       setIsMobileView(false)

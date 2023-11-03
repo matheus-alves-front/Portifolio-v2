@@ -1,3 +1,5 @@
+@import '/app/styles/theme.scss';
+
 .CanvaRoot {
   position: fixed;
   width: 100%;
@@ -16,6 +18,14 @@
 
   &.SkillSection {
     background-color: #fff;
+  }
+
+  &.CareerSection {
+    background-image: url('/backgrounds/background.png');
+    background-color: $neutral-color-low-dark;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
   }
 
   &::after {

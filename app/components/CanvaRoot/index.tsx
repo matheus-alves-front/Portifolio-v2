@@ -4,10 +4,21 @@ import { LoadModels } from '../LoadModels'
 import { StrictMode } from 'react'
 import styles from './CanvaRoot.module.scss'
 
-export function CanvaRoot() {
+export function CanvaRoot({
+  isSkillSection,
+  isCareerSection
+}: {
+  isSkillSection: boolean
+  isCareerSection: boolean
+}) {
   return (
     <section
-      className={styles.CanvaRoot}
+      className={
+        `${styles.CanvaRoot} 
+        ${isSkillSection ? styles.SkillSection : ''}
+        ${isCareerSection ? styles.CareerSection : ''}
+        `
+      }
     >
       <StrictMode>
         <Canvas

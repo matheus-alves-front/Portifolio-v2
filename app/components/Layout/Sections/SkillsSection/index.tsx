@@ -2,6 +2,7 @@
 import styles from './Skills.module.scss'
 import { motion } from "framer-motion"
 import { SkillItem } from './SkillItem'
+import { LegacyRef, forwardRef } from 'react'
 
 const Skills = [
   {
@@ -118,17 +119,21 @@ const Skills = [
   },
 ]
 
-export function SkillsSection() {
+export const SkillsSection = forwardRef<HTMLDivElement>(function SkillsSection(props, ref) {
   return (
     <section id='skills' className={styles.Container}>
       <div></div>
       <motion.div 
-        initial={{x: '150%'}} 
-        whileInView={{x: 0}}
-        transition={{ delay: .2 }}
+        initial={{
+          opacity: 0
+        }} 
+        whileInView={{
+          opacity: 1
+        }}
+        transition={{ delay: .4 }}
       >
         <h2>SKILLS</h2>
-        <div className={styles.skills}>
+        <div ref={ref} className={styles.skills}>
          {Skills.map((item, index) => (
           <SkillItem 
             key={index}
@@ -141,4 +146,4 @@ export function SkillsSection() {
       </motion.div>
     </section>
   )
-}
+})

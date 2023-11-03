@@ -8,11 +8,6 @@ export function ApresentationSection() {
 
   let scrollYReverse = useTransform(() => scrollY.get() - (scrollY.get() * 2))
 
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    console.log("Page scroll: ", latest)
-    scrollYReverse
-  })
-
   return (
     <section className={styles.Container} id="apresentation">
       <div className='column'></div>

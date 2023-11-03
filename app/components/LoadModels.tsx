@@ -1,5 +1,5 @@
 "use client"
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { OrbitControls, PerspectiveCamera } from '@react-three/drei'
 import { 
   useFrame,
@@ -12,16 +12,10 @@ import { motion } from 'framer-motion-3d'
 import { Matheus } from './Models/Matheus'
 import { useControls } from 'leva'
 
-const cameraSettings = {
-  fov: 90,
-  near: 100,
-  far: 20,
-  position: [0,0,0],
-  zoom: 500
-}
-
 export function LoadModels() {
   const matheusRef = useRef<GroupProps>(null)
+
+  const [isMobileView, setIsMobileView] = useState(false)
   
   const {
     camera, 
@@ -37,30 +31,43 @@ export function LoadModels() {
     camera.far = CameraControls.far
     camera.zoom = CameraControls.zoom
 
-
-    // console.log('aaaaa')
     // Boneco
+    // @ts-ignore
     matheusRef.current.position.x = matheusPositionRef.x
+    // @ts-ignore
     matheusRef.current.position.y = matheusPositionRef.y
+    // @ts-ignore
     matheusRef.current.position.z = matheusPositionRef.z
 
+    // @ts-ignore
     matheusRef.current.rotation.x = matheusRotationRef.x
+    // @ts-ignore
     matheusRef.current.rotation.y = matheusRotationRef.y
+    // @ts-ignore
     matheusRef.current.rotation.z = matheusRotationRef.z
 
 
-    camera.lookAt(
-      CameraControls.lookAtX,
-      CameraControls.lookAtY,
-      CameraControls.lookAtZ
-    )
+    if (isMobileView) {
+      camera.lookAt(
+        0,
+        CameraControls.lookAtY,
+        CameraControls.lookAtZ
+      )
+    } else {
+      camera.lookAt(
+        CameraControls.lookAtX,
+        CameraControls.lookAtY,
+        CameraControls.lookAtZ
+      )
+    }
   })
 
   useEffect(() => {
-    console.log(camera)
-
+    // @ts-ignore
     matheusRef.current.position.x = matheusPositionRef.x
+    // @ts-ignore
     matheusRef.current.position.y = matheusPositionRef.y
+    // @ts-ignore
     matheusRef.current.position.z = 0
 
     camera.position.x = CameraControls.x
@@ -75,6 +82,8 @@ export function LoadModels() {
       0
     )
 
+    getWindowSize()
+
     window.addEventListener('resize', getWindowSize);
 
     return () => window.removeEventListener('resize', getWindowSize);
@@ -83,6 +92,12 @@ export function LoadModels() {
   function getWindowSize() {
     const windowWidth = window.innerWidth;
     const windowHeight = window.innerHeight;
+
+    if (windowWidth < 800) {
+      setIsMobileView(true)
+    } else {
+      setIsMobileView(false)
+    }
   }
 
   const matheusPositionRef = useControls('position boneco',{
@@ -104,6 +119,9 @@ export function LoadModels() {
       min: -5,
       max: 5
     }
+  }, 
+  {
+    collapsed: true
   })
 
   const matheusRotationRef = useControls('rotation boneco',{
@@ -125,6 +143,9 @@ export function LoadModels() {
       min: -5,
       max: 5
     }
+  }, 
+  {
+    collapsed: true
   })
 
 
@@ -177,8 +198,10 @@ export function LoadModels() {
       min: 1,
       max: 2000
     }
+  }, 
+  {
+    collapsed: true
   })
-  // console.log(controls.position)
 
   return (
     <>

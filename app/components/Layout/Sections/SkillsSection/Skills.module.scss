@@ -10,13 +10,25 @@
   align-items: center;
   @include font-family-archivo();
 
+  @media (max-width: $mobile) {
+    grid-template-columns: 20% 80%;
+  }
+
+  @media (max-width: $mobile-small) {
+    grid-template-columns: auto;
+  }
+
 
   h2 {
-    color: $neutral-color-high-pure;
+    color: $neutral-color-low-pure;
     font-size: 5rem;
     @include font-family-archivo-black();
     font-weight: 400;
     margin-bottom: 2rem;
+
+    @media (max-width: $mobile) {
+      color: $neutral-color-high-pure;
+    }
   }
 
   .skills {
@@ -52,7 +64,7 @@
 }
 
 .skill {
-  color: $neutral-color-high-pure;
+  color: $neutral-color-low-pure;
   display: flex;
   flex-direction: row;
   align-items: stretch;
@@ -64,14 +76,14 @@
 
   &:hover {
     h5 {
-      background-color: $neutral-color-high-pure;
-      color: $neutral-color-low-pure;
+      background-color: $neutral-color-low-pure;
+      color: $neutral-color-high-pure;
       transform: rotateY(360deg);
     }
   }
 
   h5 {
-    border: 1px solid $neutral-color-high-pure;
+    border: 1px solid $neutral-color-low-pure;
     width: 30%;
     max-width: 115px;
     text-align: center;
@@ -81,15 +93,20 @@
 
     @include transition-slow();
 
-    &.clicked {
+    @media (max-width: $mobile) {
       background-color: $neutral-color-high-pure;
-      color: $neutral-color-low-pure;
+    }
+
+    &.clicked {
+      background-color: $neutral-color-low-pure;
+      color: $neutral-color-high-pure;
     }
   }
 
   .skillLevel {
     display: block;
     background-color: $primary-color-low-dark;
+    color: $neutral-color-high-pure;
     border-radius: .5rem;
     padding: .5rem;
     max-height: 35px;
